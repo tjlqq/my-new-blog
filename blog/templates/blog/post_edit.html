@@ -1,0 +1,73 @@
+    {% load staticfiles %}
+    <html>
+        <head>
+            <title>Django Girls blog</title>
+            <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+            <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+            <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+            <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+            <style>
+            #dibu {
+                position:fixed;
+                bottom:0px;
+                left:0px;
+                  background-color:black;
+                  color:white;
+                  text-align:center;
+                  padding:30px;
+                  width:100%;
+            }
+            #left {
+                  width:260px;
+                  float:left;
+                  padding:10px;
+             }
+              #zx {
+                  width:960px;
+                  float:left;
+                  padding:10px;
+             }
+            </<style>
+            </style>
+        </head>
+        <body>
+            <div class="page-header">
+                <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+                <h1><a href="/">Django Busy Blog</a></h1>
+            </div>
+
+            <div class="content container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1>New post</h1>
+                        <form method="POST" class="post-form">{% csrf_token %}
+                            {{ form.as_p }}
+                            <button type="submit" class="save btn btn-default">Save</button>
+                        </form>
+                    </div>
+                    <!--<div>-->
+                    <!--{% include 'blog/pager.html' %}-->
+                    <!--</div>-->
+                <!--</div>-->
+                 <!--<div class = "fy" align="center">-->
+                <!--<a href="/?p={{ prev_pager }}">上一页</a>-->
+                <!--<a href="/?p={{ next_pager }}">下一页</a>-->
+            <!--</div>-->
+            </div>
+
+            <div id="dibu">
+                <div id="left">
+                    <p>QQ:2220781766</p>
+                    <p><a href="http://www.cnblogs.com/Jt00/">博客地址</a></p>
+                </div>
+                <div id="zx" align="center">
+                    <p>关于我</p>
+                    <p><a href="http://www.cnblogs.com/Jt00/">你猜</a></p>
+                </div>
+                <div id="right">
+                    <p>TEL:18583672524</p>
+                    <p><a href="https://shop175816913.taobao.com/?qq-pf-to=pcqq.c2c">淘宝地址</a></p>
+                </div>
+            </div>
+        </body>
+    </html>
