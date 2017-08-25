@@ -1,7 +1,8 @@
 .page-header {
-        background-color: #ff9400;
+        background-color: #5466a2;
         margin-top: 0;
         padding: 20px 20px 20px 40px;
+        margin:0px;
     }
 
     .page-header h1, .page-header h1 a, .page-header h1 a:visited, .page-header h1 a:active {
@@ -11,9 +12,13 @@
     }
 
     .content {
-        margin-left: 40px;
-            margin-bottom: 202px;
+            margin-bottom: 135px;
             width:100%;
+            /*background:url("../images/1503625453.jpg")*/
+            background:gainsboro;
+    }
+    .fy{
+    height:50px;
     }
 
     h1, h2, h3, h4 {
