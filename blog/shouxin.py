@@ -7,7 +7,7 @@ from subprocess import check_output
 receiver = '123121@qq.com'    # 第三方 SMTP 服务
 mail_host="smtp.qq.com"  #设置服务器
 mail_user="121212@qq.com"#用户名
-mail_pass="ziwgertpifrydjc1i"   #口令,QQ邮箱是输入授权码，在qq邮箱设置 里用验证过的手机发送短信获得，不含空格
+mail_pass="ryd"   #口令,QQ邮箱是输入授权码，在qq邮箱设置 里用验证过的手机发送短信获得，不含空格
 sender = mail_user
 receivers = [receiver]  # 接收邮件，可设置为你的QQ邮箱或者其他邮箱
 # 三个参数：第一个为文本内容，第二个 plain 设置文本格式，第三个 utf-8 设置编码
