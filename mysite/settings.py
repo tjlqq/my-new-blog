@@ -26,6 +26,16 @@ SECRET_KEY = '%9xsu_^jd^a0ym%4cl1bm=v%2jxkt9zca9uaxm5p9#iajr(om+'
 DEBUG = True
 
 ALLOWED_HOSTS = []
+# cache settings
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://192.168.3.118:6379/0",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    }
+}
 
 
 # Application definition
@@ -91,7 +101,7 @@ DATABASES = {
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'zh-hans'
 
 TIME_ZONE = 'Asia/Chongqing'
 
@@ -107,3 +117,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+#email
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = False
+EMAIL_HOST = 'smtp.qq.com'
+EMAIL_PORT = 25
+EMAIL_HOST_USER = '2220781951@qq.com'
+EMAIL_HOST_PASSWORD = 'ziwgertpifrydjci'
+DEFAULT_FROM_EMAIL = '2220781951@qq.com'

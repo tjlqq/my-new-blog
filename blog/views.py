@@ -1,8 +1,46 @@
 from django.shortcuts import render,get_object_or_404
-from .models import Post
+from .models import Post,Article2
 from django.utils import timezone
 from .forms import PostForm
 from django.shortcuts import redirect
+from django.http import HttpResponse
+from django.shortcuts import render
+from .forms import AddForm
+from django.views.decorators.cache import cache_page
+def home1(request):
+    post_list = Article2.objects.all()  #获取全部的Article对象
+    return render(request, 'blog/home.html', {'post_list' : post_list})
+# def detail(request,my_args):
+#     post = Article2.objects.all[int(my_args)]
+#     str = ("title = %s, category = %s, date_time = %s, content = %s" % (post.title, post.category, post.date_time, post.content))
+#     return HttpResponse(str)
+def detail(request,my_args):
+    print(my_args)
+    post = Article2.objects.get(id=int(my_args))
+    return render(request,'blog/post.html',{'post':post})
+@cache_page(60 * 15)
+def my_view(request):
+    queryset =[1,2,3,4]
+    return render(request, 'blog/biaodan.html', {'queryset':queryset})
+def biaodan(request):
+    if request.method == 'POST':
+        form = AddForm(request.POST)
+        if form.is_valid():
+            a = form.cleaned_data['a']
+            b = form.cleaned_data['b']
+            return HttpResponse(str(int(a)+int(b)))
+    else:
+        form = AddForm()
+    return render(request,'blog/biaodan.html',{'form':form})
+def home(request):
+    TutoriaList = ["HTML","css","jQuery","python","Django"]
+    return render(request,'blog/biaodan.html',{'TutorialList':TutoriaList})
+def add(request):
+    a = request.GET.get('a',None)
+    b = request.GET.get('b',None)
+    a = int(a)
+    b = int(b)
+    return HttpResponse(str(a+b))
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 # Create your views here.
 # def post_list(request):
@@ -92,4 +130,8 @@ def post_edit(request, pk):
         form = PostForm(instance=post)
     return render(request, 'blog/post_edit.html', {'form': form})
 def index(request):
-    return render(request,'blog/index.html')
+    bt = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
+    return render(request,'blog/index.html',{'tm':bt[0].text[0:900],'bt':bt[0],'sj':bt[0].published_date,'tm0':bt[1].text[0:900],'bt0':bt[1],'sj0':bt[1].published_date,'tm1':bt[2].text[0:900],'bt1':bt[2],'sj1':bt[2].published_date})
+def yuedu(request):
+    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
+    return render(request, 'blog/yuedu.html', {'posts': posts})
